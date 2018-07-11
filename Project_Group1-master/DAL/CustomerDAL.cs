@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
-using Persitence;
+using Persistence;
 namespace DAL {
     public class CustomerDAL {
         private string query;
@@ -21,6 +21,7 @@ namespace DAL {
             }
             reader.Close ();
             connection.Close ();
+            
             return c;
         }
         internal Customer GetById (int UserId, MySqlConnection connection) {

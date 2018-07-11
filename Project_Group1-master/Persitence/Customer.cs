@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Persitence
+namespace Persistence
 {
     public class Customer
     {

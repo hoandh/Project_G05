@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Persitence {
+namespace Persistence {
     public static class OrderStatus {
         public const int Create_new_order = 1;
     }

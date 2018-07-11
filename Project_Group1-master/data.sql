@@ -3,21 +3,21 @@ create database shopping;
 use shopping;
 create table Users
 (
-	UserId int primary key,
+	UserId int auto_increment primary key,
     Username varchar(50) not null,
     Password varchar(50) not null,
     Phone int not null
 );
 create table Items
 (
-	ItemID int primary key,
+	ItemID int auto_increment primary key,
     ItemName varchar(50),
-    Price varchar(50),
+    Price decimal(20,2) default 0,
     Amount int 
 );
 create table Orders
 (
-	CodeOrders INT primary key,
+	CodeOrders INT auto_increment primary key,
     orderDate datetime default now(),
     ItemName varchar(50),
     Price varchar(50),
@@ -36,5 +36,10 @@ create table Bill
     CONSTRAINT fk_Bill_order FOREIGN key(CodeOrders) references Orders(CodeOrders),
     CONSTRAINT fk_Bill_Item FOREIGN KEY(ItemID) REFERENCES Items(ItemID)
 );
+insert into Users(Username, Password, Phone) values
+('Đặng Hồng Hoan', '12345', 01659023808);
+
+insert into Items(ItemName, Price , Amount) values
+('Snack', 6.0, 10 );
 
 
