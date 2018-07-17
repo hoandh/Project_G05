@@ -1,49 +1,54 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using MySql.Data.MySqlClient;
 using Persistence;
+
 namespace DAL {
     public class CustomerDAL {
         private string query;
-        private MySqlConnection connection = Dbconfiguration.OpenConnection ();
+        private MySqlConnection connection;
         private MySqlDataReader reader;
-        public Customer GetById (int UserId) {
-            if (connection.State == System.Data.ConnectionState.Closed) {
-                connection.Open ();
-            }
-            query = @"select UserId, Username,
-                        ifnull(Phone, '') as Phone
-                        from Users where UserId=" + UserId + ";";
-            reader = (new MySqlCommand (query, connection)).ExecuteReader ();
-            Customer c = null;
-            if (reader.Read ()) {
-                c = GetCustomer (reader);
-            }
-            reader.Close ();
-            connection.Close ();
-            
-            return c;
+        public static Customer GetCustomer (MySqlDataReader reader) {
+            Customer customer = new Customer ();
+            customer.UserId = reader.GetInt32 ("customer_id");
+            customer.UserName = reader.GetString ("name");
+            customer.Phone = reader.GetInt32 ("customer_phone");
+            customer.Password = reader.GetString ("password");
+            customer.Address = reader.GetString ("address");
+            return customer;
         }
-        internal Customer GetById (int UserId, MySqlConnection connection) {
-            query = @"select UserId, Username,
-                        ifnull(Phone, '') as Phone
-                        from Users where UserId=" + UserId + ";";
-            Customer c = null;
-            reader = (new MySqlCommand (query, connection)).ExecuteReader ();
-            if (reader.Read ()) {
-                c = GetCustomer (reader);
+        public Customer Login (string UserName, string password) {
+            string regexUser = @"^[^<>()[\]\\,;:'\%#^\s@\$&!@]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}))$";
+            string regexPassword = @"^[-.@_a-zA-Z0-9 ]+$";
+            if (Regex.IsMatch (UserName, regexUser) != true || UserName == "" || Regex.IsMatch (password, regexPassword) != true || password == "") {
+                return null;
             }
-            reader.Close ();
-            return c;
+            query = $"Select * From Users  where Username = '{UserName}' and password = '{password}';";
+            Customer customer = null;
+            using (connection = DBHelper.OpenConnection ()) {
+                MySqlCommand cmd = new MySqlCommand (query, connection);
+                using (reader = cmd.ExecuteReader ()) {
+                    if (reader.Read ()) {
+                        customer = new Customer ();
+                        customer = GetCustomer (reader);
+                    }
+                }
+            }
+            return customer;
         }
-        private Customer GetCustomer (MySqlDataReader reader) {
-            Customer c = new Customer ();
-            c.UserId = reader.GetInt32 ("UserId");
-            c.UserName = reader.GetString ("Username");
-            c.Phone = reader.GetInt32 ("Phone");
-            c.Password = reader.GetString ("Password");
-            return c;
-        }
-
+        // public List<Customer> GetCustomers (MySqlCommand command) {
+        //     List<Customer> list = new List<Customer> ();
+        //     using (connection = DBHelper.OpenConnection ()) {
+        //         MySqlCommand cmd = new MySqlCommand (query, connection);
+        //         using (reader = cmd.ExecuteReader ()) {
+        //             while (reader.Read ()) {
+        //                 list.Add (GetCustomer (reader));
+        //             }
+        //         }
+        //     }
+        //     return list;
+        // }
     }
+
 }

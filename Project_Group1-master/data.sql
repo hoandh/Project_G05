@@ -6,7 +6,8 @@ create table Users
 	UserId int auto_increment primary key,
     Username varchar(50) not null,
     Password varchar(50) not null,
-    Phone int not null
+    Phone int not null,
+    Address varchar(50)
 );
 create table Items
 (
@@ -30,16 +31,42 @@ create table Bill
     ItemID int not null,
     ItemName varchar(50),
     Price varchar(50),
-    quantity int not null default 1,
-    TotalMoney varchar(50),
+    quantity int not null default 1
     constraint pk_Bill primary key (CodeOrders, ItemID),
     CONSTRAINT fk_Bill_order FOREIGN key(CodeOrders) references Orders(CodeOrders),
     CONSTRAINT fk_Bill_Item FOREIGN KEY(ItemID) REFERENCES Items(ItemID)
 );
-insert into Users(Username, Password, Phone) values
-('Đặng Hồng Hoan', '12345', 01659023808);
+
+delimiter $$
+create trigger tg_before_insert before insert
+	on Items for each row
+    begin
+		if new.amount < 0 then
+            signal sqlstate '45001' set message_text = 'Số lượng lớn hơn 0';
+        end if;
+    end $$
+delimiter ;
+
+delimiter $$
+create trigger tg_CheckAmount
+	before update on Items
+	for each row
+	begin
+		if new.amount < 0 then
+            signal sqlstate '45001' set message_text = 'Số lượng lớn hơn 0';
+        end if;
+    end $$
+delimiter ;
+insert into Users(Username, Password, Phone, Address) values
+('Admin', '12345', 01659023808, 'Ha Noi');
 
 insert into Items(ItemName, Price , Amount) values
-('Snack', 6.0, 10 );
-
+('Poca', 6.0, 10 ),
+('Coca', 15.0, 10),
+('Pepsi', 15.0, 10),
+('7Up', 15.0, 10),
+('Fanta', 15.0, 10),
+('Swing', 6.0, 10),
+('Ostar', 6.0, 10);
+ 
 

@@ -1,0 +1,13 @@
+D:\Project_G05\Project_Group1-master\DAL\bin\Debug\netstandard2.0\ConnectionString.txt
+D:\Project_G05\Project_Group1-master\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+D:\Project_G05\Project_Group1-master\DAL\bin\Debug\netstandard2.0\DAL.dll
+D:\Project_G05\Project_Group1-master\DAL\bin\Debug\netstandard2.0\DAL.pdb
+D:\Project_G05\Project_Group1-master\DAL\bin\Debug\netstandard2.0\Persitence.dll
+D:\Project_G05\Project_Group1-master\DAL\bin\Debug\netstandard2.0\Persitence.pdb
+D:\Project_G05\Project_Group1-master\DAL\obj\Debug\netstandard2.0\DAL.csprojResolveAssemblyReference.cache
+D:\Project_G05\Project_Group1-master\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+D:\Project_G05\Project_Group1-master\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+D:\Project_G05\Project_Group1-master\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+D:\Project_G05\Project_Group1-master\DAL\obj\Debug\netstandard2.0\DAL.csproj.CopyComplete
+D:\Project_G05\Project_Group1-master\DAL\obj\Debug\netstandard2.0\DAL.dll
+D:\Project_G05\Project_Group1-master\DAL\obj\Debug\netstandard2.0\DAL.pdb

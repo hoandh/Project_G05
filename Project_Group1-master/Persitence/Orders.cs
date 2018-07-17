@@ -1,51 +1,55 @@
 using System;
 using System.Collections.Generic;
-
-namespace Persistence {
-    public static class OrderStatus {
-        public const int Create_new_order = 1;
+namespace Persistence
+{
+    public class Bill
+    {
+        public Items item = new Items();
+        public int quantity;
     }
-    public class Orders {
-        public int? CodeOrders { get; set; }
-        public Orders (DateTime orderDate, string itemName, string price, Customer orderCustomer) {
-            this.orderDate = orderDate;
-            this.ItemName = itemName;
-            this.Price = price;
-            this.OrderCustomer = orderCustomer;
-
-        }
-        public DateTime orderDate { get; set; }
-        public string ItemName { get; set; }
-        public string Price { get; set; }
-        public Customer OrderCustomer { get; set; }
-        public List<Items> ItemsList { set; get; }
-
-         public Items this[int index]
+    public static class OrderStatus
+    {
+        public const int create_new_order = 1;    }
+    public class Orders
+    {
+        public int? CodeOrder{get;set;}
+        public int UserId{get; set;}
+        public DateTime orderdate{get; set;}
+        public string Itemname {get; set;}
+        public string Price {get; set;}
+        public int Amount {get; set;}
+        public List<Bill> ItemsList {get; set;}
+        public Bill this[int index]
         {
             get
             {
-                if (ItemsList == null || ItemsList.Count == 0 || index < 0 || ItemsList.Count < index) return null;
+                if (ItemsList == null || ItemsList.Count == 0 || index < 0 || ItemsList.Count <index)
+                {
+                    return null;
+                };
                 return ItemsList[index];
             }
             set
             {
-                if (ItemsList == null) ItemsList = new List<Items>();
+                if (ItemsList == null) ItemsList = new List<Bill>();
                 ItemsList.Add(value);
             }
         }
-        public Orders () {
-            ItemsList = new List<Items> ();
+        public Orders()
+        {
+            ItemsList = new List<Bill>();
         }
-
-        public override bool Equals (object obj) {
-            if (obj is Orders) {
-                return ((Orders) obj).CodeOrders.Equals (CodeOrders);
+        public override bool Equals(object obj)
+        {
+            if(obj is Orders )
+            {
+                return ((Orders)obj).CodeOrder.Equals(CodeOrder);
             }
             return false;
         }
-
-        public override int GetHashCode () {
-            return CodeOrders.GetHashCode ();
+        public override int GetHashCode()
+        {
+            return CodeOrder.GetHashCode();
         }
     }
 }

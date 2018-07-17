@@ -1,0 +1,9 @@
+D:\Project_G05\Project_Group1-master\Persitence\bin\Debug\netstandard2.0\Persitence.deps.json
+D:\Project_G05\Project_Group1-master\Persitence\bin\Debug\netstandard2.0\Persitence.dll
+D:\Project_G05\Project_Group1-master\Persitence\bin\Debug\netstandard2.0\Persitence.pdb
+D:\Project_G05\Project_Group1-master\Persitence\obj\Debug\netstandard2.0\Persitence.csprojResolveAssemblyReference.cache
+D:\Project_G05\Project_Group1-master\Persitence\obj\Debug\netstandard2.0\Persitence.csproj.CoreCompileInputs.cache
+D:\Project_G05\Project_Group1-master\Persitence\obj\Debug\netstandard2.0\Persitence.AssemblyInfoInputs.cache
+D:\Project_G05\Project_Group1-master\Persitence\obj\Debug\netstandard2.0\Persitence.AssemblyInfo.cs
+D:\Project_G05\Project_Group1-master\Persitence\obj\Debug\netstandard2.0\Persitence.dll
+D:\Project_G05\Project_Group1-master\Persitence\obj\Debug\netstandard2.0\Persitence.pdb

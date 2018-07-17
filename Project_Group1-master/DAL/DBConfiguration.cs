@@ -1,57 +1,85 @@
 using System;
-using System.IO;
+using System.Collections.Generic;
 using MySql.Data.MySqlClient;
-
+using System.IO;
 namespace DAL
 {
-    public class Dbconfiguration
+    public class DbConfiguration
     {
-        private static string Connection_string = "server=localhost; user id=root; password=danghoan; port=3306;database=shopping;SslMode=None";
-        private static string conString = null;
-        public static MySqlConnection OpenDefaultConnection()
-        {
-            try{
-                MySqlConnection connection = new MySqlConnection
-                {
-                    ConnectionString = Connection_string
-                };
-                connection.Open();
-                return connection;
-            }catch{
-                return null;
-            }
-        }
-
+        private static MySqlConnection connection  = null;
         public static MySqlConnection OpenConnection()
         {
-            try{
-                if(conString == null){
-                    using (FileStream fileStream = File.OpenRead("ConnectionString.txt"))
-                    {
-                        using (StreamReader reader = new StreamReader(fileStream))
-                        {
-                            conString = reader.ReadLine();
-                        }
-                    }
+            try
+            {
+                string connectionString;
+                FileStream fileStream = File.OpenRead("ConnectionString.txt");
+                using (StreamReader reader = new StreamReader(fileStream))
+                {
+                    connectionString = reader.ReadLine();
                 }
-                return OpenConnection(conString);
-            }catch{
+                return OpenConnection(connectionString);
+            }
+            catch
+            {
                 return null;
             }
         }
-
         public static MySqlConnection OpenConnection(string connectionString)
         {
-            try{
+            try
+            {
                 MySqlConnection connection = new MySqlConnection
                 {
                     ConnectionString = connectionString
                 };
                 connection.Open();
                 return connection;
-            }catch{
+            }
+            catch
+            {
                 return null;
             }
-        }    
+        }
+        public static void CloseConnection()
+        {
+            if (connection != null) connection.Close();
+        }
+        public static bool ExecTransaction(List<string> queries)
+        {
+            bool result = true;
+            OpenConnection();
+            MySqlCommand command = connection.CreateCommand();
+            MySqlTransaction trans = connection.BeginTransaction();
+
+            command.Connection = connection;
+            command.Transaction = trans;
+
+            try
+            {
+                foreach (var query in queries)
+                {
+                    command.CommandText = query;
+                    command.ExecuteNonQuery();
+                    trans.Commit();
+                }
+                result = true;
+            }
+            catch
+            {
+                result = false;
+                try
+                {
+                    trans.Rollback();
+                }
+                catch
+                {
+                }
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return result;
+        }
     }
 }

@@ -5,7 +5,7 @@ namespace Persistence
     {
         public int? ItemId{get; set;}
         public string ItemName{get; set;}
-        public string Price{get; set;}
+        public int Price{get; set;}
         public int Amount{get; set;}
         public override bool Equals(object obj){
             if(obj is Items){

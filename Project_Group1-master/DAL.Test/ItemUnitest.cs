@@ -2,20 +2,18 @@ using System;
 using Xunit;
 using MySql.Data.MySqlClient;
 using DAL;
-using Persistence;
 
 namespace DAL.Test
 {
-    public class ItemDalUnitTest
+    public class ItemsTest
     {
-        private ItemDAL itemDal = new ItemDAL();
-        
         [Theory]
         [InlineData(1)]
-        public void GetByCustomerIdTest(int id)
+        public void TestGetItemByID(int ItemId)
         {
-            Items result = itemDal.GetItemById(id);
-            Assert.NotNull(result);
+            ItemDAL item = new ItemDAL();
+            Assert.NotNull(item.GetItemById(ItemId));
         }
+        
     }
 }

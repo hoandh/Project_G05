@@ -33,7 +33,7 @@ namespace DAL
             Items item = new Items();
             item.ItemId = reader.GetInt32("ItemID");
             item.ItemName = reader.GetString("ItemName");
-            item.Price = reader.GetString("price");
+            item.Price = reader.GetInt32("price");
             item.Amount = reader.GetInt32("Amount");
             return item;
         }

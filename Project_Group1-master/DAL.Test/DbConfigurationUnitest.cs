@@ -10,27 +10,27 @@ namespace DAL.Test
         [Fact]
         public void OpenConnectionTest()
         {
-            Assert.NotNull(Dbconfiguration.OpenConnection());
+            Assert.NotNull(DbConfiguration.OpenConnection());
         }
 
         [Theory]
         [InlineData("server=localhost; user id=root; password=danghoan; port=3306;database=shopping;SslMode=None")]
         public void OpenConnectionWithStringTest(string connectionString)
         {
-            Assert.NotNull(Dbconfiguration.OpenConnection(connectionString));
+            Assert.NotNull(DbConfiguration.OpenConnection(connectionString));
         }
 
         [Theory]
         [InlineData("server=localhost1;user id=root;password=danghoan;port=3306;database=shopping;SslMode=None")]
         public void OpenConnectionWithStringFailTest(string connectionString)
         {
-            Assert.Null(Dbconfiguration.OpenConnection(connectionString));
+            Assert.Null(DbConfiguration.OpenConnection(connectionString));
         }
 
         [Fact]
         public void OpenDefaultConnectionTest()
         {
-            Assert.NotNull(Dbconfiguration.OpenDefaultConnection());
+            Assert.NotNull(DbConfiguration.OpenConnection());
         }
     }
 }

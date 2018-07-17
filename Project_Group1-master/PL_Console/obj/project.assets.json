@@ -2129,11 +2129,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Project_G05\\Project_Group1-master\\PL_Console\\PL_Console.csproj",
+      "projectUniqueName": "D:\\Project_G05\\Project_Group1-master\\PL_Console\\PL_Console.csproj",
       "projectName": "PL_Console",
-      "projectPath": "d:\\Project_G05\\Project_Group1-master\\PL_Console\\PL_Console.csproj",
+      "projectPath": "D:\\Project_G05\\Project_Group1-master\\PL_Console\\PL_Console.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "d:\\Project_G05\\Project_Group1-master\\PL_Console\\obj\\",
+      "outputPath": "D:\\Project_G05\\Project_Group1-master\\PL_Console\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
@@ -2154,11 +2154,11 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "d:\\Project_G05\\Project_Group1-master\\BL\\BL.csproj": {
-              "projectPath": "d:\\Project_G05\\Project_Group1-master\\BL\\BL.csproj"
+            "D:\\Project_G05\\Project_Group1-master\\BL\\BL.csproj": {
+              "projectPath": "D:\\Project_G05\\Project_Group1-master\\BL\\BL.csproj"
             },
-            "d:\\Project_G05\\Project_Group1-master\\Persitence\\Persitence.csproj": {
-              "projectPath": "d:\\Project_G05\\Project_Group1-master\\Persitence\\Persitence.csproj"
+            "D:\\Project_G05\\Project_Group1-master\\Persitence\\Persitence.csproj": {
+              "projectPath": "D:\\Project_G05\\Project_Group1-master\\Persitence\\Persitence.csproj"
             }
           }
         }
