@@ -5,7 +5,7 @@ using Persistence;
 
 namespace BL {
     public class Item_BL {
-        private Item_DAL dal;
+        private Item_DAL dal = new Item_DAL();
         public List<Items> GetItems () {
             return dal.GetItems ();
         }

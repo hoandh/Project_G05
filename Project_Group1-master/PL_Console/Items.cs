@@ -41,8 +41,8 @@ namespace PL_Console {
                 if (!isINT) {
                     Console.WriteLine ("Giá trị sai vui lòng nhập lại");
                     Console.Write ("#Chọn : ");
-                } else if (number < 0 || number > 3) {
-                    Console.WriteLine ("Giá trị sai vui lòng nhập lại 1 - 3. ");
+                } else if (number < 0 || number > 2) {
+                    Console.WriteLine ("Giá trị sai vui lòng nhập lại 1 - 2. ");
                     Console.Write ("#Chọn : ");
                 } else {
                     break;
