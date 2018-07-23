@@ -16,16 +16,7 @@ namespace DAL.Test
             Orders or = new Orders();
             Assert.Null(order.AddOrder(or));
         }
-        [Fact]
-        public void TestOrder()
-        {
-            Orders or = new Orders();
-            or.CodeOrders = 1;
-            or.ItemName = "a";
-            or.orderDate = DateTime.Now;
-            or.ItemsList = new List<Items>();
-            Items orde = new Items();
-        }
+        
 
     }
 }

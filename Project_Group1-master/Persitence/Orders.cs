@@ -14,7 +14,7 @@ namespace Persistence
     {
         public int? CodeOrder{get;set;}
         public int UserId{get; set;}
-        public DateTime orderdate{get; set;}
+        public int ItemId{get;set;}
         public string Itemname {get; set;}
         public string Price {get; set;}
         public int Amount {get; set;}

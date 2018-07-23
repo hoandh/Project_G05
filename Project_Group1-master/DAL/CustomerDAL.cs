@@ -11,15 +11,15 @@ namespace DAL {
         private MySqlDataReader reader;
         public static Customer GetCustomer (MySqlDataReader reader) {
             Customer customer = new Customer ();
-            customer.UserId = reader.GetInt32 ("customer_id");
-            customer.UserName = reader.GetString ("name");
-            customer.Phone = reader.GetInt32 ("customer_phone");
+            customer.UserId = reader.GetInt32 ("UserId");
+            customer.UserName = reader.GetString ("Username");
+            customer.Phone = reader.GetInt32 ("Phone");
             customer.Password = reader.GetString ("password");
-            customer.Address = reader.GetString ("address");
+            customer.Address = reader.GetString ("Address");
             return customer;
         }
         public Customer Login (string UserName, string password) {
-            string regexUser = @"^[^<>()[\]\\,;:'\%#^\s@\$&!@]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}))$";
+            string regexUser =  @"^[-.@_a-zA-Z0-9 ]+$";
             string regexPassword = @"^[-.@_a-zA-Z0-9 ]+$";
             if (Regex.IsMatch (UserName, regexUser) != true || UserName == "" || Regex.IsMatch (password, regexPassword) != true || password == "") {
                 return null;

@@ -18,32 +18,24 @@ namespace DAL
             try
             {
                 //Khoa cap nhat tat ca table , bao dam tinh toan ven du lieu
-                cmd.CommandText = "lock tables Employees write, Orders write, Books write, List_Order_ID write;";
+                cmd.CommandText = "lock tables Users write, Orders write, Items write, Bill write;";
                 cmd.ExecuteNonQuery();
                 MySqlTransaction trans = connection.BeginTransaction();
                 cmd.Transaction = trans;
                 // Nhap du lieu cho bang Order
-                cmd.CommandText = "insert into Orders(ID_Order , ID_E , Creation_Time) values (@ID_Order , @ID_E , @Creation_Time)";
-                cmd.Parameters.AddWithValue("@ID_Order", order.CodeOrder);
-                cmd.Parameters.AddWithValue("@ID_E", order.UserId);
-                cmd.Parameters.AddWithValue("@Creation_Time", order.orderdate);
-                //Nhập dữ liệu cho bảng OrderDetail
+                cmd.CommandText = "insert into Orders(CodeOrders , UserId) values (@CodeOrders , @UserId)";
+                cmd.Parameters.AddWithValue("@CodeOrders", order.CodeOrder);
+                cmd.Parameters.AddWithValue("@UserId", order.UserId);
+                //Nhập dữ liệu cho bảng Bill
                 for (int i = 0; i < order.ItemsList.Count; i++)
                 {
-                    cmd.CommandText = $@"insert into Bill(Codeorder,ItemId,unit_price,quantity) values
+                    cmd.CommandText = $@"insert into Bill(Codeorder,ItemId,Price,quantity) values
                     ({order.CodeOrder},
                      {order.ItemsList[i].item.ItemId},
                      {order.ItemsList[i].quantity},
                      {order.ItemsList[i].quantity * order.ItemsList[i].item.Price})";
                      cmd.CommandText = $"update Items set Amount = Amount - {order.ItemsList[i].quantity} where ItemId = {order.ItemsList[i].item.Price};";
 
-                    //cmd.CommandText = "insert into OrderDetails(ID_Order,ID_Book,unit_price,quantity) values (@ID_Order, @ID_Book, @unit_price,@quantity);";                    
-                    // cmd.Parameters.Clear();
-                    // cmd.Parameters.AddWithValue("@ID_Order", order.ID_Order);
-                    // cmd.Parameters.AddWithValue("@ID_Book", order.BooksList[i].book.ID_Book);
-                    // cmd.Parameters.AddWithValue("@quantity", order.BooksList[i].quantity);
-                    // cmd.Parameters.AddWithValue("@unit_price", order.BooksList[i].quantity * order.BooksList[i].book.unit_price);
-                    // cmd.CommandText = "update Books set amount = amount - " + order.BooksList[i].quantity + " where id_book =" + order.BooksList[i].book.ID_Book + ";";
                 }
             }
             catch

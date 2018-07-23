@@ -11,8 +11,8 @@ namespace DAL.Test
         [InlineData(1)]
         public void TestGetItemByID(int ItemId)
         {
-            ItemDAL item = new ItemDAL();
-            Assert.NotNull(item.GetItemById(ItemId));
+            Item_DAL item = new Item_DAL();
+            Assert.NotNull(item.getItemById(ItemId));
         }
         
     }

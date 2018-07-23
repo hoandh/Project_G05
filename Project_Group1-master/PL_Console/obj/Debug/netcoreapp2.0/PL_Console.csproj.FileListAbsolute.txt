@@ -16,3 +16,4 @@ D:\Project_G05\Project_Group1-master\PL_Console\obj\Debug\netcoreapp2.0\PL_Conso
 D:\Project_G05\Project_Group1-master\PL_Console\obj\Debug\netcoreapp2.0\PL_Console.csproj.CopyComplete
 D:\Project_G05\Project_Group1-master\PL_Console\obj\Debug\netcoreapp2.0\PL_Console.dll
 D:\Project_G05\Project_Group1-master\PL_Console\obj\Debug\netcoreapp2.0\PL_Console.pdb
+D:\Project_G05\Project_Group1-master\PL_Console\obj\Debug\netcoreapp2.0\PL_Console.csprojResolveAssemblyReference.cache

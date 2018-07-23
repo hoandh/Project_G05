@@ -40,7 +40,7 @@ namespace PL_Console {
         public static void Menu_Interface () {
             string[] menu = { "Đăng Nhập.", "Thoát", "#Chọn: " };
             Console.WriteLine ("=============================================");
-            Console.WriteLine ("------------ Shopping Online ----------------");
+            Console.WriteLine ("------------ Mua hàng trực tuyến ----------------");
             Console.WriteLine ("=============================================");
             for (int i = 0; i < 3; i++) {
                 if (i != 2) {
@@ -50,19 +50,22 @@ namespace PL_Console {
                 }
             }
         }
-        class LoginUser {
+        public class LoginUser {
+            private static string UserName;
+            private static string password;
             public void Login () {
                 while (true) {
+                    Console.Clear();
                     Console.WriteLine ("=============================================================");
                     Console.WriteLine ("-------------------  Đăng Nhập ");
                     Console.WriteLine ("=============================================================");
                     Customer_Bl ad = new Customer_Bl ();
-                    string Email;
+                    string UserName;
                     string password;
                     while (true) {
-                        Console.Write ("- Nhập UserName       : ");
-                        Email = Console.ReadLine ();
-                        Console.Write ("- Nhập Mật Khẩu       : ");
+                        Console.Write ("- Nhập Tên người dùng       : ");
+                        UserName = Console.ReadLine ();
+                        Console.Write ("- Nhập Mật Khẩu             : ");
                         while (true) {
                             password = "";
                             ConsoleKeyInfo keyInfo;
@@ -82,23 +85,23 @@ namespace PL_Console {
                             } while (keyInfo.Key != ConsoleKey.Enter);
                             break;
                         }
-                        if (CheckNotSpecialCharacters (Email, password) == true) {
+                        if (CheckNotSpecialCharacters (UserName, password) == true) {
                             break;
                         } else {
                             CheckLoginSuccessOrFailure (0);
                         }
                     }
                     int count = 0;
-                    if (ad.Login (Email, password) != null) {
+                    if (ad.Login (UserName, password) != null) {
                         count++;
                     }
                     CheckLoginSuccessOrFailure (count);
                 }
 
             }
-            private static bool CheckNotSpecialCharacters (string Email, string password) {
-                if (Regex.IsMatch (Email, @"^[^<>()[\]\\,;:'\%#^\s@\$&!@]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}))$") != true ||
-                    Email == "" || Regex.IsMatch (password, @"^[-.@_a-zA-Z0-9 ]+$") != true || password == "") {
+            private static bool CheckNotSpecialCharacters (string UserName, string password) {
+                if (Regex.IsMatch (UserName, @"^[-.@_a-zA-Z0-9 ]+$") != true ||
+                    UserName == "" || Regex.IsMatch (password, @"^[-.@_a-zA-Z0-9 ]+$") != true || password == "") {
                     return false;
                 }
                 return true;
@@ -108,7 +111,7 @@ namespace PL_Console {
                 if (count != 1) {
                     Console.Clear ();
                     Console.WriteLine ("-------------------------------------------------------------");
-                    Console.WriteLine ("  *^:   UserName hoặc mật khẩu của bạn chưa chính xác.");
+                    Console.WriteLine ("   Tên người dùng hoặc mật khẩu của bạn chưa chính xác.");
                     Console.WriteLine ("-------------------------------------------------------------");
                     while (true) {
                         Console.WriteLine ("1. Thử lại.");
@@ -130,6 +133,7 @@ namespace PL_Console {
                         switch (number) {
                             case 1:
                                 Console.Clear ();
+                                Menu_Interface();
                                 break;
                             case 2:
                                 Console.Clear ();
@@ -146,6 +150,11 @@ namespace PL_Console {
                     Console.WriteLine ("-------------------------------------------------------------");
                     return;
                 }
+            }
+             public static Customer GetCustomer () {
+                Customer_Bl cus = new Customer_Bl ();
+                Customer customer = cus.Login (UserName, password);
+                return customer;
             }
         }
     }

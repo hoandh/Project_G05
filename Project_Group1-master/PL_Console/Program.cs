@@ -8,7 +8,7 @@ using Persistence;
 namespace PL_Console {
     class Program {
         static void Main (string[] args) {
-            UserInterface.InterfaceCinema ();
+            UserInterface.InterfaceShop();
         }
     }
 }

@@ -1,29 +1,20 @@
 using System;
 using System.Collections.Generic;
-using Persistence;
 using DAL;
+using Persistence;
 
-namespace BL
-{
-    public class ItemBL
-    {
-        private ItemDAL idal;
-        public ItemBL()
-        {
-            idal = new ItemDAL();
+namespace BL {
+    public class Item_BL {
+        private Item_DAL dal;
+        public List<Items> GetItems () {
+            return dal.GetItems ();
         }
-        public Items GetItemById(int itemId)
-        {
-            return idal.GetItemById(itemId);
+        public Items getItemById (int id) {
+            if(id ==0)
+            {
+                return null;
+            }
+            return dal.getItemById (id);
         }
-        public List<Items> GetAll()
-        {
-            return idal.GetItems(ItemFilter.GET_ALL, null);
-        }
-        public List<Items> GetByName(string itemName)
-        {
-            return idal.GetItems(ItemFilter.FILTER_BY_ITEM_NAME, new Items{ItemName=itemName});
-        }
-        
     }
 }
